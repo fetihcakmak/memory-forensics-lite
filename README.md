@@ -43,7 +43,15 @@ main.py
 
 ---
 
-## ⚡ Kullanım
+## ⚡ Kurulum
+
+```bash
+git clone https://github.com/fetihcakmak/memory-forensics-lite.git
+cd memory-forensics-lite
+python main.py --demo   # Ek bağımlılık gerekmez (yalnızca stdlib)
+```
+
+## 🚀 Kullanım
 
 ```bash
 # Simülasyon / Demo modu (Her platformda çalışır)
@@ -53,6 +61,28 @@ python main.py --demo
 # Hedef process'in PID numarasını vermeniz gerekir.
 python main.py --pid 4512
 ```
+
+## 🖥️ Örnek Çıktı (Demo Modu)
+
+```
+[*] Aşama 1: RWX (Injection) Taraması
+  [!] ŞÜPHELİ: 0x00007FF7B4200000 adresinde RWX izni bulundu! Shellcode şüphesi.
+
+[*] Aşama 2: IOC String Avcılığı
+  [+] IPv4 Eşleşmeleri: 192.168.1.55 (C2 IP olabilir), 8.8.8.8
+  [+] URL Eşleşmeleri: http://malicious-domain.xyz/payload.bin
+  [!] Kritik Windows API Eşleşmeleri: VirtualAllocEx, WriteProcessMemory, CreateRemoteThread
+
+Sonuç: Simüle edilen process'te DLL Injection veya Hollowlama aktivitesi yüksek ihtimal.
+```
+
+## ⚠️ Etik Kullanım
+
+`--pid` ile gerçek bir süreç hedeflemek, o sürecin belleğini okumak için `OpenProcess`/`ReadProcessMemory` çağırır ve genellikle Administrator yetkisi gerektirir. Bu aracı yalnızca **kendi sisteminizde**, kendi süreçleriniz üzerinde veya DFIR eğitimi/CTF kapsamında izin verilen ortamlarda kullanın. Başkasına ait bir sürecin belleğini izinsiz okumak yasa dışıdır.
+
+## 📄 Lisans
+
+Bu depo şu an bir lisans dosyası içermiyor. Kullanım koşulları için proje sahibiyle iletişime geçin.
 
 ---
 
